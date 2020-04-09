@@ -17,16 +17,20 @@ const jest = require( 'jest' );
 const { sync: spawn } = require( 'cross-spawn' );
 
 /**
- * Internal dependencies
+ * WordPress dependencies
  */
 const {
-	fromConfigRoot,
 	getArgFromCLI,
 	getArgsFromCLI,
 	hasArgInCLI,
 	hasProjectFile,
 	hasJestConfig,
-} = require( '../utils' );
+} = require( '@wordpress/scripts-utils' );
+
+/**
+ * Internal dependencies
+ */
+const { fromConfigRoot } = require( '../utils' );
 
 const result = spawn( 'node', [ require.resolve( 'puppeteer/install' ) ], {
 	stdio: 'inherit',
