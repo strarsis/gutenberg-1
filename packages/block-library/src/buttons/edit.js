@@ -26,7 +26,11 @@ function ButtonsEdit( { className, attributes, setAttributes } ) {
 	const { blockDirection } = attributes;
 
 	return (
-		<div className={ `${ className } is-direction-${ blockDirection }` }>
+		<div
+			className={ `${ className }${
+				blockDirection === 'vertical' ? ' is-direction-vertical' : ''
+			}` }
+		>
 			<AlignmentHookSettingsProvider value={ alignmentHooksSetting }>
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS }
