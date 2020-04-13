@@ -22,6 +22,7 @@ describe( 'RichText', () => {
 		//
 		// See: https://github.com/WordPress/gutenberg/issues/3091
 		await insertBlock( 'Heading' );
+		await page.click( '[aria-label="Change heading level"]' );
 		await page.click( '[aria-label="Heading 3"]' );
 
 		expect( await getEditedPostContent() ).toMatchSnapshot();
