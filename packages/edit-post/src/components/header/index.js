@@ -24,6 +24,7 @@ function Header() {
 		isPublishSidebarOpened,
 		isSaving,
 		getBlockSelectionStart,
+		isFullscreenActive,
 	} = useSelect(
 		( select ) => ( {
 			shortcut: select(
@@ -39,6 +40,9 @@ function Header() {
 			isSaving: select( 'core/edit-post' ).isSavingMetaBoxes(),
 			getBlockSelectionStart: select( 'core/block-editor' )
 				.getBlockSelectionStart,
+			isFullscreenActive: select( 'core/edit-post' ).isFeatureActive(
+				'fullscreenMode'
+			),
 		} ),
 		[]
 	);
@@ -57,7 +61,7 @@ function Header() {
 
 	return (
 		<div className="edit-post-header">
-			<AdminMenuToggle />
+			{ isFullscreenActive && <AdminMenuToggle /> }
 			<div className="edit-post-header__toolbar">
 				<HeaderToolbar />
 			</div>
