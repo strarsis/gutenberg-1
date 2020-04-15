@@ -37,7 +37,7 @@ function HeaderToolbar() {
 			isTextModeEnabled:
 				select( 'core/edit-post' ).getEditorMode() === 'text',
 			previewDeviceType: select(
-				'core/edit-post'
+				'core/block-editor'
 			).__experimentalGetPreviewDeviceType(),
 		} ),
 		[]

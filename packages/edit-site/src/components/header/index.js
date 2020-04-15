@@ -6,6 +6,7 @@ import {
 	BlockNavigationDropdown,
 	ToolSelector,
 	Inserter,
+	__experimentalPreviewOptions as PreviewOptions,
 } from '@wordpress/block-editor';
 import { PinnedItems } from '@wordpress/interface';
 
@@ -73,6 +74,7 @@ export default function Header() {
 				<ToolSelector />
 			</div>
 			<div className="edit-site-header__actions">
+				<PreviewOptions />
 				<SaveButton />
 				<PinnedItems.Slot scope="core/edit-site" />
 				<MoreMenu />
