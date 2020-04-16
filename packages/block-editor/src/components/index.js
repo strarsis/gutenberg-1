@@ -90,3 +90,4 @@ export { default as WritingFlow } from './writing-flow';
 
 export { default as BlockEditorProvider } from './provider';
 export { default as useSimulatedMediaQuery } from './use-simulated-media-query';
+export { default as __experimentalUseEditorFeature } from './use-editor-feature';
