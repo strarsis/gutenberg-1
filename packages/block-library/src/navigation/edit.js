@@ -224,7 +224,16 @@ function Navigation( {
 						name: __( 'Create Empty' ),
 					},
 			  ]
-			: [];
+			: [
+					{
+						id: '',
+						name: __( 'Select Menu…' ),
+					},
+					{
+						id: CREATE_EMPTY_OPTION_VALUE,
+						name: __( 'Create Empty' ),
+					},
+			  ];
 
 	// If we don't have existing items or the User hasn't
 	// indicated they want to automatically add top level Pages
@@ -256,7 +265,7 @@ function Navigation( {
 								<SelectControl
 									label={ __( 'Create from existing Menu' ) }
 									hideLabelFromVision={ true }
-									value={ selectedMenu }
+									value={ selectedMenu || menuOptions[ 0 ] }
 									onChange={ ( value ) => {
 										setSelectedMenu( value );
 									} }
