@@ -7,7 +7,7 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { useMemo, useState, useRef, useEffect } from '@wordpress/element';
+import { useMemo, useState, useRef } from '@wordpress/element';
 import {
 	InnerBlocks,
 	InspectorControls,
@@ -61,6 +61,8 @@ function Navigation( {
 	updateNavItemBlocks,
 	className,
 } ) {
+	const CREATE_EMPTY_OPTION_VALUE = '__CREATE_EMPTY__';
+
 	//
 	// HOOKS
 	//
@@ -180,8 +182,11 @@ function Navigation( {
 	}
 
 	function handleCreateFromMenu() {
-		// If the selected Menu has no items then just create an empty Nav Block
+		// Create an empty Nav Block if:
+		// i. the selected Menu has no items
+		// ii. the selected Menu is the "CREATE_EMPTY" placeholder option
 		if (
+			( selectedMenu && selectedMenu === CREATE_EMPTY_OPTION_VALUE ) ||
 			! navLinkBlocksFromMenuItems ||
 			! navLinkBlocksFromMenuItems.length
 		) {
@@ -195,11 +200,31 @@ function Navigation( {
 	const hasPages = hasResolvedPages && pages && pages.length;
 	const hasMenus = hasResolvedMenus && menus && menus.length;
 
-	useEffect( () => {
-		if ( !! menus && menus.length ) {
-			setSelectedMenu( menus[ 0 ].id );
-		}
-	}, [ menus ] );
+	const placeHolderInstructionText = hasMenus
+		? __( 'Create a Navigation from all existing pages, or chose a Menu.' )
+		: __(
+				'Create a Navigation from all existing pages, or create an empty one.'
+		  );
+
+	const menuOptions =
+		!! menus && menus.length
+			? [
+					{
+						id: '',
+						name: __( 'Select Menu…' ),
+					},
+					...menus,
+					{
+						id: '',
+						name: '------------------',
+						disabled: true,
+					},
+					{
+						id: CREATE_EMPTY_OPTION_VALUE,
+						name: __( 'Create Empty' ),
+					},
+			  ]
+			: [];
 
 	// If we don't have existing items or the User hasn't
 	// indicated they want to automatically add top level Pages
@@ -211,13 +236,11 @@ function Navigation( {
 					className="wp-block-navigation-placeholder"
 					icon={ menu }
 					label={ __( 'Navigation' ) }
-					instructions={ __(
-						'Create a Navigation from all existing pages, or create an empty one.'
-					) }
+					instructions={ placeHolderInstructionText }
 				>
 					<div
 						ref={ ref }
-						className="wp-block-navigation-placeholder__buttons"
+						className="wp-block-navigation-placeholder__actions"
 					>
 						<Button
 							isPrimary
@@ -228,38 +251,50 @@ function Navigation( {
 							{ __( 'Create from all top-level pages' ) }
 						</Button>
 
-						{ !! hasMenus && selectedMenu && (
+						{ !! hasMenus && (
 							<>
 								<SelectControl
 									label={ __( 'Create from existing Menu' ) }
+									hideLabelFromVision={ true }
 									value={ selectedMenu }
 									onChange={ ( value ) => {
 										setSelectedMenu( value );
 									} }
-									options={ menus.map( ( mappedMenu ) => {
-										return {
-											label: mappedMenu.name,
-											value: mappedMenu.id,
-										};
-									} ) }
+									options={ menuOptions.map(
+										( mappedMenu ) => {
+											return {
+												label: mappedMenu.name,
+												value: mappedMenu.id,
+												disabled: mappedMenu.disabled,
+											};
+										}
+									) }
 								/>
 								<Button
 									isSecondary
 									className="wp-block-navigation-placeholder__button"
-									onClick={ handleCreateFromMenu }
+									onClick={ () => {
+										if ( ! selectedMenu ) {
+											return;
+										}
+										handleCreateFromMenu();
+									} }
+									disabled={ ! selectedMenu }
 								>
 									{ __( 'Create from Menu' ) }
 								</Button>
 							</>
 						) }
 
-						<Button
-							isLink
-							className="wp-block-navigation-placeholder__button"
-							onClick={ handleCreateEmpty }
-						>
-							{ __( 'Create empty' ) }
-						</Button>
+						{ ! hasMenus && (
+							<Button
+								isLink
+								className="wp-block-navigation-placeholder__button"
+								onClick={ handleCreateEmpty }
+							>
+								{ __( 'Create empty' ) }
+							</Button>
+						) }
 					</div>
 				</Placeholder>
 			</Block.div>
