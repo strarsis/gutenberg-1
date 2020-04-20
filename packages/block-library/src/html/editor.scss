@@ -1,30 +1,25 @@
 .wp-block-html {
-	margin-bottom: $default-block-margin;
+	.block-editor-rich-text__editable {
+		font-family: $editor-html-font;
+		background-color: $white;
+		color: $dark-gray-primary;
+		padding: 0.8em 1em;
+		border-radius: $radius-block-ui;
+		max-height: 250px;
+		overflow-y: auto;
 
-	.block-library-html__preview-overlay {
+		// Fonts smaller than 16px causes mobile safari to zoom.
+		font-size: $mobile-text-min-font-size;
+		@include break-small {
+			font-size: $default-font-size;
+		}
+	}
+
+	.wp-block-html__preview-overlay {
 		position: absolute;
 		width: 100%;
 		height: 100%;
 		top: 0;
 		left: 0;
-	}
-
-	.block-editor-plain-text {
-		font-family: $editor-html-font;
-		color: $dark-gray-800;
-		padding: 0.8em 1em;
-		border: 1px solid $light-gray-500;
-		border-radius: 4px;
-		max-height: 250px;
-
-		/* Fonts smaller than 16px causes mobile safari to zoom. */
-		font-size: $mobile-text-min-font-size;
-		@include break-small {
-			font-size: $default-font-size;
-		}
-
-		&:focus {
-			box-shadow: none;
-		}
 	}
 }
