@@ -18,12 +18,9 @@ npm install @wordpress/scripts-utils --save-dev
 - `getArgFromCLI`
 - `getArgsFromCLI`
 - `getFileArgsFromCLI`
-- `hasBabelConfig`
 - `hasArgInCLI`
 - `hasFileArgInCLI`
-- `hasJestConfig`
 - `hasPackageProp`
-- `hasPrettierConfig`
 - `hasProjectFile`
 
 **Note**: This package requires `node` 10.0.0 or later. It is not compatible with older versions.

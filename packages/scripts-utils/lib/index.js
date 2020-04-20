@@ -8,11 +8,6 @@ const {
 	hasArgInCLI,
 	hasFileArgInCLI,
 } = require( './cli' );
-const {
-	hasBabelConfig,
-	hasJestConfig,
-	hasPrettierConfig,
-} = require( './config' );
 const { fromProjectRoot, hasProjectFile } = require( './file' );
 const { hasPackageProp } = require( './package' );
 
@@ -21,11 +16,8 @@ module.exports = {
 	getArgFromCLI,
 	getArgsFromCLI,
 	getFileArgsFromCLI,
-	hasBabelConfig,
 	hasArgInCLI,
 	hasFileArgInCLI,
-	hasJestConfig,
 	hasPackageProp,
-	hasPrettierConfig,
 	hasProjectFile,
 };

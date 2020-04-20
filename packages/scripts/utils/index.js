@@ -2,7 +2,12 @@
  * Internal dependencies
  */
 const { spawnScript } = require( './cli' );
-const { getWebpackArgs } = require( './config' );
+const {
+	getWebpackArgs,
+	hasBabelConfig,
+	hasJestConfig,
+	hasPrettierConfig,
+} = require( './config' );
 const {
 	buildWordPress,
 	downloadWordPressZip,
@@ -17,6 +22,9 @@ module.exports = {
 	downloadWordPressZip,
 	fromConfigRoot,
 	getWebpackArgs,
+	hasBabelConfig,
+	hasJestConfig,
+	hasPrettierConfig,
 	mergeYAMLConfigs,
 	spawnScript,
 };

@@ -24,13 +24,12 @@ const {
 	getArgsFromCLI,
 	hasArgInCLI,
 	hasProjectFile,
-	hasJestConfig,
 } = require( '@wordpress/scripts-utils' );
 
 /**
  * Internal dependencies
  */
-const { fromConfigRoot } = require( '../utils' );
+const { fromConfigRoot, hasJestConfig } = require( '../utils' );
 
 const result = spawn( 'node', [ require.resolve( 'puppeteer/install' ) ], {
 	stdio: 'inherit',

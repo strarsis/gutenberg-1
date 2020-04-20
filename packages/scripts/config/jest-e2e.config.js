@@ -4,9 +4,9 @@
 const path = require( 'path' );
 
 /**
- * WordPress dependencies
+ * Internal dependencies
  */
-const { hasBabelConfig } = require( '@wordpress/scripts-utils' );
+const { hasBabelConfig } = require( '../utils' );
 
 const jestE2EConfig = {
 	preset: 'jest-puppeteer',

@@ -18,12 +18,12 @@ const jest = require( 'jest' );
 /**
  * WordPress dependencies
  */
-const { getArgsFromCLI, hasJestConfig } = require( '@wordpress/scripts-utils' );
+const { getArgsFromCLI } = require( '@wordpress/scripts-utils' );
 
 /**
  * Internal dependencies
  */
-const { fromConfigRoot } = require( '../utils' );
+const { fromConfigRoot, hasJestConfig } = require( '../utils' );
 
 const config = ! hasJestConfig()
 	? [
