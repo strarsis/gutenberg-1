@@ -15,10 +15,8 @@ const {
 } = require( './config' );
 const { fromProjectRoot, hasProjectFile } = require( './file' );
 const { hasPackageProp } = require( './package' );
-const { camelCaseDash } = require( './string' );
 
 module.exports = {
-	camelCaseDash,
 	fromProjectRoot,
 	getArgFromCLI,
 	getArgsFromCLI,

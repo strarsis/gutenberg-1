@@ -14,7 +14,6 @@ npm install @wordpress/scripts-utils --save-dev
 
 **Methods included**
 
-- `camelCaseDash`
 - `fromProjectRoot`
 - `getArgFromCLI`
 - `getArgsFromCLI`
