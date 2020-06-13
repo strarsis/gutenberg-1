@@ -27,14 +27,14 @@ const WHITESPACE_CSS = csstree.fromPlainObject( {
 	value: ' ',
 } );
 
-const wrap = function( namespace, ignore = [] ) {
+const wrap = function ( namespace, ignore = [] ) {
 	const namespaceCleaned = trimClassnameDot( namespace ); // ensure a pure classname without `.`
 	const wrapperSelector = csstree.fromPlainObject( {
 		type: 'ClassSelector',
 		name: namespaceCleaned,
 	} );
 
-	return function( node, item, list ) {
+	return function ( node, item, list ) {
 		// prepend wrapper to selectors that start with non-root selectors
 		if ( node.type === 'Selector' ) {
 			const firstChildNode = node.children.first();
