@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { map, compose } from 'lodash';
+import { map, over } from 'lodash';
 
 /**
  * Internal dependencies
@@ -26,7 +26,7 @@ const transformStyles = ( styles, wrapperClassName = '' ) => {
 		if ( baseURL ) {
 			transforms.push( urlRewrite( baseURL ) );
 		}
-		return traverse( css, compose( transforms ) );
+		return traverse( css, over( transforms ) );
 	} );
 };
 
