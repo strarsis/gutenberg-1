@@ -54,6 +54,7 @@ const wrap = function( namespace, ignore = [] ) {
 				// ... start with keyframe specific selectors
 				firstChildNode.name === 'from' ||
 				firstChildNode.name === 'to' ||
+				firstChildNode.type === 'Percentage' ||
 				// ...is within a function, a pseudo class selector or a pseudo element
 				// selector
 				this.function !== null
