@@ -53,7 +53,10 @@ const wrap = function( namespace, ignore = [] ) {
 				} ) ||
 				// ... start with keyframe specific selectors
 				firstChildNode.name === 'from' ||
-				firstChildNode.name === 'to'
+				firstChildNode.name === 'to' ||
+				// ...is within a function, a pseudo class selector or a pseudo element
+				// selector
+				this.function !== null
 			)
 				return;
 
